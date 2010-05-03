@@ -1,0 +1,31 @@
+==============================================================================
+TODO
+==============================================================================
+
+Frontend
+--------
+
+- Searching (animal/search)
+    Potential options:
+        1. Creating another table to use with MyISAM's fulltext search. We
+           could use a trigger to keep it updated.
+                search_blob (_animal_id_, search_field)
+        2. Use Zend_Search_Lucene
+           (http://framework.zend.com/manual/en/zend.search.lucene.overview.html)
+        3. Sphinx or Solr (overkill?)
+        4. Concatenate fields and do a LIKE search (slow and tedious to write)
+- Search JS (onfocus/onblur)
+- Images in Atom feed (animal/feed)
+- Browsing by common_name (animal/browse)
+- Explanation for the "updates" page
+- Spam protection for email addresses
+- Hide errors (e.g., "Controller not found") for production
+- Test in IE8
+
+Backend
+-------
+
+- Save images from scraped sites
+- Get cat data
+- CRON job for nightly updates
+

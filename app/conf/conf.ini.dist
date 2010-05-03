@@ -1,0 +1,16 @@
+; config
+
+[site]
+name        = Missoula Adoptables
+url         = http://missoulaadoptables.org
+email       = info@missoulaadoptables.org
+production  = false
+pretty_urls = true
+num_animals = 20 ; # of animals to display on the homepage
+
+[database]
+driver = mysql
+host   = localhost
+dbname = missoulaadoptables
+user   = root
+pass   =

@@ -1,0 +1,37 @@
+====================================================
+Missoula Adoptables, <http://missoulaadoptables.org>
+====================================================
+
+Missoula Adoptables was created for Software Engineering at the University of
+Montana-Missoula by Jon-Michael Deldin and Evan Cummings.
+
+Requirements
+------------
+
+- PHP 5.2+
+- MySQL 4.1+
+- Apache with mod_rewrite (Lighty works without the pretty URLs)
+
+Setup
+-----
+
+1. Clone the repository
+
+    git clone git://github.com/jmdeldin/missoulaadoptables
+
+2. Create a VirtualHost or move the repo to your htdocs directory
+
+3. Create a database and import the SQL files in app/conf:
+
+    mysql -u<user> -p <db_name> < setup.sql
+    mysql -u<user> -p <db_name> < init-data.sql
+
+4. Edit app/conf/conf.ini.dist and save it as app/conf/conf.ini
+
+
+Credits
+-------
+
+- The search icon is from the Silk icon set by Mark James
+  <http://www.famfamfam.com/lab/icons/silk/>.
+

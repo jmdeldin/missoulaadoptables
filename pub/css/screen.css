@@ -1,0 +1,193 @@
+/**
+ * Screen stylesheet.
+ */
+
+/* HTML */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background: #9ea191;
+    color: #2f3536;
+}
+    html, form * {
+        font: 14px/1.4 'Helvetica Neue', Arial, sans-serif;
+    }
+
+code, pre {
+    color: #900;
+    font-family: Monaco, Consolas, "Courier New", Courier, monospace;
+}
+
+h2 {
+    color: #533013;
+    font-size: 34px;
+    font-weight: normal;
+}
+
+table {
+    text-align: left;
+}
+
+/* base widths */
+#header_inner, #mission_inner, #content, #footer {
+    margin: 0 auto;
+    overflow: hidden;
+    width: 960px;
+}
+
+/* header */
+#header {
+    background: #5d695d;
+    padding: 20px 0 10px;
+}
+    #header_inner {
+        position: relative;
+    }
+    #header a {
+        color: #ffcc66;
+        text-decoration: none;
+    }
+        #header a:hover {
+            text-decoration: underline;
+        }
+    #header h1 {
+        float: left;
+        font-size: 36px;
+        line-height: 1.2;
+        width: 180px;
+    }
+
+/* nav bar */
+#nav {
+    bottom: 0;
+    line-height: 1;
+    position: absolute;
+    right: 0;
+    width: 515px;
+}
+    #nav li {
+        float: left;
+        font-size: 24px;
+        list-style: none;
+        margin: 0 0 0 12px;
+    }
+        #nav li a {
+            text-transform: lowercase;
+        }
+
+/* search form */
+#search {}
+    #search label {
+        display: none;
+    }
+    #search input[type="text"] {
+        background: #fff;
+        border: 1px solid transparent;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+        color: #533013;
+        font-size: 20px;
+        height: 18px;
+        line-height: 1;
+        padding: 4px;
+        width: 192px;
+        z-index: 999;
+    }
+    #search button {
+        background: #f0c95f url(../img/search_icon.png) no-repeat center center;
+        border: 0;
+        height: 28px;
+        margin: 0 0 2px;
+        text-indent: -9999px;
+        width: 28px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+/* Blossom photo bar on homepage */
+#mission {
+    background: #2f3536;
+}
+    #mission_inner {
+        padding: 24px 0 0;
+    }
+        #mission_photo {
+            float: left;
+            width: 545px;
+        }
+            #mission_photo img {
+                display: block;
+            }
+        #mission_text {
+            color: #f0c95f;
+            float: right;
+            font-size: 34px;
+            margin: 20px 0 0;
+            width: 360px;
+        }
+
+/* main content frame */
+#content {
+    background: #fff;
+}
+    #content_inner {
+        padding: 40px 60px 70px;
+    }
+
+/* container for homepage entries */
+.animal_container {
+    margin: 20px 0 0;
+    overflow: hidden;
+}
+    .animal {
+        border: 2px solid #533013;
+        float: left;
+        padding: 10px;
+        width: 340px;
+    }
+        .animal_container > .left { float: left }
+        .animal_container > .right { float: right }
+        .animal .details {
+            float: right;
+            width: 230px;
+        }
+        .animal .photo {
+            float: left;
+        }
+
+/* single animal view */
+#animal_view {
+    overflow: hidden;
+}
+    #animal_view > div {
+        float: left;
+    }
+    #animal_view_photo {
+        width: 200px;
+    }
+    #animal_view_details {
+        margin: 0 30px 0 20px;
+        width: 400px;
+    }
+        #animal_view_details table {
+            margin: 0 0 1em;
+        }
+    #animal_view_shelter {
+        width: 190px;
+    }
+        #animal_view_shelter address {
+            font-style: normal;
+        }
+/* footer */
+#footer {
+    font-size: 12px;
+    margin: 15px auto;
+    text-align: left;
+    width: 460px;
+}
+
