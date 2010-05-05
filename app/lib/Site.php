@@ -58,6 +58,7 @@ class Site
     private function __construct()
     {
         $this->appRoot = dirname(dirname(__FILE__)); // "../../"
+        spl_autoload_register(array($this, "autoload"));
         $this->loadConf();
     }
 
