@@ -38,21 +38,23 @@ header('content-type: text/html; charset=utf-8');
         </div><!--//header_inner-->
     </div><!--//header-->
 
-    <div id="mission">
-        <div id="mission_inner">
-            <div id="mission_photo">
-                <img src="<?php echo Url::getBase() ?>/img/blossom.jpg"
-                     alt="">
-                Blossom, &copy; Jon-Michael Deldin.
-            </div>
-            <div id="mission_text">
-                <p>
-                    Our mission is to showcase pets from Missoula animal
-                    shelters and rescue groups.
-                </p>
-            </div>
-        </div><!--//mission_inner-->
-    </div><!--//mission-->
+        <div id="mission">
+            <div id="mission_inner">
+                <?php if (isset($showMission)): ?>
+                    <div id="mission_photo">
+                        <img src="<?php echo Url::getBase() ?>/img/blossom.jpg"
+                            alt="">
+                        Blossom, &copy; Jon-Michael Deldin.
+                    </div>
+                    <div id="mission_text">
+                        <p>
+                            Our mission is to showcase pets from Missoula animal
+                            shelters and rescue groups.
+                        </p>
+                    </div>
+                <?php endif ?>
+            </div><!--//mission_inner-->
+        </div><!--//mission-->
 
     <div id="content">
         <div id="content_inner">

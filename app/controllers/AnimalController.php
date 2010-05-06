@@ -20,6 +20,7 @@ class AnimalController implements Controller
     public function index()
     {
         $v = new View("animal_index");
+        $v->showMission = true;
         $v->title = "Latest Animals";
         $v->animals = $this->model->getLatestAnimals(Site::getInstance()->getNumAnimals());
         $v->render();
