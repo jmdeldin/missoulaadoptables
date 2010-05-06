@@ -61,9 +61,9 @@ class Scraper
     for ($i = 0; $i < count($lineOne[2]); $i++)
     {
       if ($lineOne[2][$i] == 'Female')
-        $sexes[$i] = f;
+        $sexes[$i] = 'F';
       else
-        $sexes[$i] = m;
+        $sexes[$i] = 'M';
     }
     
     // Formats fixed.
@@ -71,7 +71,7 @@ class Scraper
     {
       if ($lineOne[3][$i] == 'spayed' || $lineOne[3][$i] == 'neutered')
         $fixed[$i] = 1;
-      elseif ($lineOne[3][$i] == Intact || $lineOne[3][$i] == '')
+      elseif ($lineOne[3][$i] == "Intact" || $lineOne[3][$i] == '')
         $fixed[$i] = 0;
     }
 
