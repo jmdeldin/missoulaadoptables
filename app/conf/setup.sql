@@ -103,3 +103,16 @@ create table shelter_pages(
 
 set FOREIGN_KEY_CHECKS = 1;
 
+
+/*
+ * view: search_index
+ *
+ * This view is a denormalized view of our data for easier searches.
+ */
+create view search_index
+as
+    select animals.*, common_names.name as common_name
+    from animals
+        inner join common_names on
+            animals.common_name_id = common_names.id;
+

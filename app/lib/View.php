@@ -14,7 +14,7 @@ class View
      */
     public function __construct($name)
     {
-        $this->file = Site::getInstance()->getAppRoot() . "/views/{$name}.php";
+        $this->setFile($name);
     }
 
     public function render()
@@ -23,11 +23,14 @@ class View
         {
             $e = new NotFoundError("View unavailable.");
             $e->serve();
-        die('foo');
         }
         // make any object vars available as globals to the view
         extract(get_object_vars($this));
         require $this->file;
     }
-}
 
+    public function setFile($name)
+    {
+        $this->file = Site::getInstance()->getAppRoot() . "/views/{$name}.php";
+    }
+}

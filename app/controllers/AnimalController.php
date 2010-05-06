@@ -54,5 +54,32 @@ class AnimalController implements Controller
         $v->animals = $this->model->getLatestAnimals(20);
         $v->render();
     }
-}
 
+    /**
+     * Handles search queries.
+     *
+     * @param string $_GET['q']
+     */
+    public function search()
+    {
+        // no query
+        if (!isset($_GET['q']) || empty($_GET['q'])) {
+            $v = new View("search_index");
+            $v->content = "You must enter a query.";
+            return $v->render();
+        }
+
+        // process their query
+        $query = filter_var($_GET['q'], FILTER_SANITIZE_STRING);
+
+        $m = new AnimalModel();
+        $v = new View("search_results");
+        $v->title = "Search Results for &#8220;{$query}&#8221;";
+        $v->animals = $m->find($query);
+        if (empty($v->animals)) {
+            $v->setFile("search_index");
+            $v->content = "Sorry, no results were found for &#8220;{$query}&#8221;.";
+        }
+        $v->render();
+    }
+}

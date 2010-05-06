@@ -85,4 +85,42 @@ EOF;
         else
             return null;
     }
+
+    /**
+     * Returns all animals in the database.
+     *
+     * Thus far, this is only used by the cron script.
+     */
+    public function getAll()
+    {
+        return $this->get();
+    }
+
+    /**
+     * Search the search_index view for matching terms.
+     *
+     * @todo  switch to Zend_Search_Lucene or some other less naive solution
+     * @param string $query Term to search for
+     */
+    public function find($query)
+    {
+        $query = "%$query%";
+        $sql = <<<EOF
+select id
+from search_index
+where common_name like ?
+    or breed like ?
+    or description like ?
+    or name like ?
+EOF;
+        $animals = array();
+        $rs = $this->db->retrieve($sql, array($query, $query, $query, $query));
+        if (!$rs) {
+            return $animals;
+        }
+        foreach ($rs as $row) {
+            $animals[] = $this->getAnimalById((int) $row['id']);
+        }
+        return $animals;
+    }
 }
