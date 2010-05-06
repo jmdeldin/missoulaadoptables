@@ -22,4 +22,19 @@ class CronController {
     public function index()
     {
     }
+
+    /**
+     * Run the scrapers.
+     */
+    public function scrape()
+    {
+        $url = "http://montanapets.org/mhs/residentdog.html";
+        // DOMDocument complains about malformed HTML
+        // TODO: See if there's a better library for parsing HTML
+        error_reporting(E_ERROR);
+        $scraper = new Scraper($url);
+        $loader = new Loader($scraper->scrape());
+        $loader->checkActive();
+        $loader->load();
+    }
 }

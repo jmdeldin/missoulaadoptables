@@ -53,12 +53,22 @@ class Site
     private $email;
 
     /**
+     * Directories containing classes.
+     * @var array
+     */
+    private $dirs = array('controllers',
+                          'models',
+                          'lib',
+                          'lib/scrapers'
+    );
+
+    /**
      * Cannot be instantiated outside of this class.
      */
     private function __construct()
     {
         $this->appRoot = dirname(dirname(__FILE__)); // "../../"
-        spl_autoload_register(array($this, "autoload"));
+        $this->setIncludePaths();
         $this->loadConf();
     }
 
@@ -106,21 +116,30 @@ class Site
     }
 
     /**
+     * Adds $this->dirs to the include path and initializes the autoloader.
+     */
+    private function setIncludePaths()
+    {
+        // add the directories to the include_path (for CLI and Zend usage)
+        foreach ($this->dirs as $d) {
+            set_include_path(get_include_path() . PATH_SEPARATOR .
+                             "{$this->appRoot}/{$d}"
+            );
+        }
+
+        // seed the autoloader with $this->autoload()
+        spl_autoload_register(array($this, "autoload"));
+    }
+
+    /**
      * This method should be fed to spl_autoload_register() (its only client).
      *
      * @param string $className
      */
     public function autoload($className)
     {
-        // directories to scan
-        $dirs = array(
-            'controllers',
-            'models',
-            'lib'
-        );
-
         $fname = "";
-        foreach ($dirs as $d) {
+        foreach ($this->dirs as $d) {
             $filename = $this->appRoot . "/{$d}/{$className}.php";
             if (file_exists($filename)) {
                 return require $filename;
