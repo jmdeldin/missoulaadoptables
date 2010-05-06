@@ -20,7 +20,6 @@ class Loader
   // Constructor.
   function Loader($newPets)
   {
-    require dirname(dirname(dirname(__FILE__))) . "/lib/Site.php";
     $db = Site::getInstance()->getDbConf();
     $this->newPets = $newPets;
     $this->connection = mysql_connect($db["host"], $db["user"], $db["pass"]);
