@@ -57,4 +57,19 @@ class Url
     {
         return Site::getInstance()->getUrl();
     }
+
+    /**
+     * Converts a filesystem path to a URL if possible.
+     *
+     * @param string $path
+     */
+    public static function path2url($path)
+    {
+        // see if the root path exists in $path
+        if (strpos($path, Site::getInstance()->getRoot()) === FALSE) {
+            return null;
+        }
+        $img = str_replace(Site::getInstance()->getRoot(), self::getBase(), $path);
+        return str_replace("pub/", '', $img);
+    }
 }

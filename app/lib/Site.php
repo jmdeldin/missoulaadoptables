@@ -24,6 +24,12 @@ class Site
     private $name;
 
     /**
+     * Location of the root (top-most) directory.
+     * @var string
+     */
+    private $root;
+
+    /**
      * Location of the "app" directory.
      * @var string
      */
@@ -73,7 +79,8 @@ class Site
      */
     private function __construct()
     {
-        $this->appRoot = dirname(dirname(__FILE__)); // "../../"
+        $this->root = dirname(dirname(dirname(__FILE__))); // ../../../
+        $this->appRoot = "{$this->root}/app";
         $this->setIncludePaths();
         $this->loadConf();
     }
@@ -108,7 +115,7 @@ class Site
             $this->email = $conf["site"]["email"];
 
             // upload path
-            $this->uploadPath = dirname($this->appRoot) . '/' . $conf["paths"]["upload_path"];
+            $this->uploadPath = $this->root . '/' . $conf["paths"]["upload_path"];
             $this->uploadPath = rtrim($this->uploadPath, '/');
             if (!file_exists($this->uploadPath)) {
                 echo "{$this->uploadPath} does not exist.";
@@ -203,5 +210,10 @@ class Site
     public function getUploadPath()
     {
         return $this->uploadPath;
+    }
+
+    public function getRoot()
+    {
+        return $this->root;
     }
 }

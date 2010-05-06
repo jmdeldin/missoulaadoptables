@@ -74,7 +74,7 @@ class AnimalController implements Controller
         $query = filter_var($_GET['q'], FILTER_SANITIZE_STRING);
 
         $m = new AnimalModel();
-        $v = new View("search_results");
+        $v = new View("animal_index");
         $v->title = "Search Results for &#8220;{$query}&#8221;";
         $v->animals = $m->find($query);
         if (empty($v->animals)) {

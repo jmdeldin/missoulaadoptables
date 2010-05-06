@@ -3,8 +3,9 @@
 <h2><?php echo $animal->getName() ?></h2>
 <div id="animal_view">
     <div id="animal_view_photo">
-        <!-- TODO: Use real image -->
-        <img width="200" src="<?php echo Url::getBase() ?>/img/test_dog.jpg"
+        <img width="200"
+             src="<?php echo ($animal->hasImage()) ? $animal->getImage()
+                                                   : Url::getBase() . "/img/no-photo.png" ?>"
              alt="Photo of <?php echo $animal->getName() ?>">
     </div><!--//animal_view_photo-->
 

@@ -19,6 +19,7 @@ class Animal
     private $color;
     private $commonName;
     private $shelter;
+    private $image;
 
     public function __construct($id, $entryDate, $dateRecorded, $name,
         $description, $breed, $sex, $fixed, $age, $color, $commonName,
@@ -36,6 +37,7 @@ class Animal
         $this->color        = $color;
         $this->commonName   = $commonName;
         $this->shelter      = $shelter;
+        $this->image        = Site::getInstance()->getUploadPath() . "/{$this->id}.jpg";
     }
 
     public function getId()
@@ -158,4 +160,13 @@ class Animal
         $this->age = $age;
     }
 
+    public function hasImage()
+    {
+        return file_exists($this->image);
+    }
+
+    public function getImage()
+    {
+        return Url::path2url($this->image);
+    }
 }

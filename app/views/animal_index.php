@@ -1,13 +1,16 @@
 <?php require 'common/header.php' ?>
 
-<h2>Latest Animals</h2>
+<h2><?php echo $title ?></h2>
 
 <div class="animal_container">
     <?php $i = 0 ?>
     <?php foreach ($animals as $animal): ?>
         <div class="animal <?php echo (($i & 1) === 0) ? "left" : "right"; $i++ ?>">
             <div class="photo">
-                <img width="100" src="<?php echo Url::getBase() ?>/img/test_dog.jpg" alt="<?php echo $animal->getName() ?>">
+                <img width="100"
+                     src="<?php echo ($animal->hasImage()) ? $animal->getImage()
+                                                           : Url::getBase() . "/img/no-photo.png" ?>"
+                     alt="Photo of <?php echo $animal->getName() ?>">
             </div>
             <div class="details">
                 <table>
