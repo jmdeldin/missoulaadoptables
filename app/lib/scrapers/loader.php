@@ -20,10 +20,10 @@ class Loader
   // Constructor.
   function Loader($newPets)
   {
-    require "connect.php";
-    
+    require dirname(dirname(dirname(__FILE__))) . "/lib/Site.php";
+    $db = Site::getInstance()->getDbConf();
     $this->newPets = $newPets;
-    $this->connection = mysql_connect($hostname, $username, $password);
+    $this->connection = mysql_connect($db["host"], $db["user"], $db["pass"]);
     $this->currentPets = array( "id"            => array(),
                                 "scrape_date"   => array(),
                                 "name"          => array(),
@@ -40,26 +40,22 @@ class Loader
                                 "active"        => array());
     $this->keys = array_keys($this->currentPets);
     $this->newKeys = array_keys($this->newPets);
-    mysql_select_db($db, $this->connection);
+    mysql_select_db($db["dbname"], $this->connection);
+
     $query = "SELECT * FROM animals";
     $result = mysql_query($query, $this->connection);
-    
     // Load up array of current pets from DB.
     while ($row = mysql_fetch_array($result, MYSQL_ASSOC))
     {
-      //var_dump($row);
-
       for($i = 0; $i < count($row); $i++)
       {
-        array_push($this->currentPets[$this->keys[$i]], 
+        array_push($this->currentPets[$this->keys[$i]],
           $row[$this->keys[$i]]);
       }
-      
     }
     
     $this->totalNew = count($this->newPets["name"]);
     $this->totalCurrent = count($this->currentPets["name"]);
-
   }
   
   // Check to see if a pet is gone.
@@ -116,9 +112,6 @@ class Loader
   // Starts the database loading process.
   function load()
   {
-    var_dump($this->currentPets);
-    var_dump($this->newPets);
-    
     // For each new pet,
     for ($n = 0; $n < count($this->newPets["name"]); $n++)
     {
