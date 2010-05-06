@@ -57,17 +57,20 @@ values(1, (select id from common_names where name = "dog"),
  * Animals
  */
 insert into animals(entry_date, name, description,
-                    breed, sex, fixed, age, color, common_name_id, shelter_id)
+                    breed, sex, fixed, age, color, common_name_id, shelter_id,
+                    active, impound_num)
 values("2010-04-03",
        "Suecm",
        "OWNER TURN IN: Suecm (whose name is Salish for \"lightening\") was left with us because her owner simply couldn\'t care for her anymore. She\'s a sweet, shy little lady who loves to be held and will sit still to be petted just as long as anyone is interested.",
        "Chihuahua X",
        'F',
        false,
-       8,
+       "8 months",
        "sable/white",
        (select id from common_names where name = "dog"),
-       (select id from shelters where name = "Missoula Animal Control")),
+       (select id from shelters where name = "Missoula Animal Control"),
+       true,
+       "A00001"),
 
       ("2010-04-03",
        "Cassie",
@@ -75,8 +78,9 @@ values("2010-04-03",
        "Lab",
        'F',
        true,
-       40,
+       "3 years",
        "tan nylon",
        (select id from common_names where name = "dog"),
-       (select id from shelters where name = "Missoula Animal Control"));
-
+       (select id from shelters where name = "Missoula Animal Control"),
+       true,
+       "A00002");

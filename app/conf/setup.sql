@@ -56,11 +56,13 @@ create table animals(
     scrape_date    timestamp         not null default CURRENT_TIMESTAMP,
     name           varchar(45)       not null,
     description    text              not null,
-    breed          varchar(35)       not null,
+    breed          varchar(45)       not null,
     sex            char(1)           not null,
     fixed          boolean           not null,
-    age            int               not null,
-    color          varchar(25)           null,
+    age            varchar(11)       not null, -- TODO: Try to convert the age into an int at scrape time
+    color          varchar(45)           null,
+    active         boolean           not null default true,
+    impound_num    varchar(8)            null, -- TODO: Remove this field after updating the scraper
 
     -- foreign key: common_name_id (common_names.id)
     common_name_id int               not null,
@@ -109,6 +111,7 @@ set FOREIGN_KEY_CHECKS = 1;
  *
  * This view is a denormalized view of our data for easier searches.
  */
+drop view if exists search_index;
 create view search_index
 as
     select animals.*, common_names.name as common_name
