@@ -53,6 +53,12 @@ class Site
     private $email;
 
     /**
+     * Path to save images to
+     * @var string
+     */
+    private $uploadPath;
+
+    /**
      * Directories containing classes.
      * @var array
      */
@@ -100,6 +106,13 @@ class Site
 
             // email
             $this->email = $conf["site"]["email"];
+
+            // upload path
+            $this->uploadPath = dirname($this->appRoot) . '/' . $conf["paths"]["upload_path"];
+            $this->uploadPath = rtrim($this->uploadPath, '/');
+            if (!file_exists($this->uploadPath)) {
+                echo "{$this->uploadPath} does not exist.";
+            }
 
             // production status -- parse_ini_file sets "false" as ""
             $this->production = ($conf["site"]["production"]) ? true : false;
@@ -185,5 +198,10 @@ class Site
     public function getEmail()
     {
         return $this->email;
+    }
+
+    public function getUploadPath()
+    {
+        return $this->uploadPath;
     }
 }

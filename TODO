@@ -15,7 +15,6 @@ Frontend
 Backend
 -------
 
-- Save images from scraped sites
 - Get cat data
 - CRON job for nightly updates
 

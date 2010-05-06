@@ -8,6 +8,9 @@ production  = false
 pretty_urls = true
 num_animals = 20 ; # of animals to display on the homepage
 
+[paths]
+upload_oath = pub/img/upload ; relative to the root
+
 [database]
 driver = mysql
 host   = localhost

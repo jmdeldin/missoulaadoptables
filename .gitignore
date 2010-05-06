@@ -2,4 +2,5 @@ conf.ini
 .DS_Store
 Thumbs.db
 *.swp
+pub/img/upload
 

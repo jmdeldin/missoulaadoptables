@@ -142,6 +142,9 @@ class Loader
               ($match == false))
           {
             $this->insertAnimal($n);
+            // TODO: verify mysql_insert_id is consistently returning an ID
+            $this->saveImage($this->newPets["impound_num"][$n],
+                             mysql_insert_id($this->connection));
           }
           
         }
@@ -203,7 +206,21 @@ class Loader
       common_name_id = 1, 
       shelter_id = 1;", $this->connection);
   }
-  
+
+  /**
+   * Saves a remote image to the local disk.
+   *
+   * @param string $impoundNum Impound # for finding the image
+   * @param int    $id         Animal ID from the animals table
+   */
+  private function saveImage($impoundNum, $id)
+  {
+    $url = "http://montanapets.org/mhs/pictures/{$impoundNum}.jpg";
+    $jpg = file_get_contents($url);
+    file_put_contents(Site::getInstance()->getUploadPath() . "/{$id}.jpg",
+                     $jpg);
+  }
+
   // Recursive loading function.
   function loadRecursive($n = 0, $c = 0)
   {
