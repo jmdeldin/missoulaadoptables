@@ -27,7 +27,7 @@ header('content-type: text/html; charset=utf-8');
                     <form action="<?php echo Url::route2url("animal/search") ?>"
                           method="get">
                         <label for="q">Search:</label>
-                        <input id="q" name="q" type="text" value="search">
+                        <input id="q" name="q" type="text">
                         <button type="submit">
                             Go!
                         </button>

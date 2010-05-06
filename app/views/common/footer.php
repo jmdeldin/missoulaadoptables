@@ -13,5 +13,6 @@
             </a>
         </p>
     </div>
+    <script src="<?php Url::getBase() ?>/js/site.js"></script>
 </body>
 </html>
