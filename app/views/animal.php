@@ -19,8 +19,20 @@
                 <td><?php echo $animal->getBreed() ?></td>
             </tr>
             <tr>
-                <th>Shelter:</th>
-                <td><?php echo $animal->getShelter() ?></td>
+                <th>Color:</th>
+                <td><?php echo $animal->getColor() ?></td>
+            </tr>
+            <tr>
+                <th>Sex:</th>
+                <td><?php echo ($animal->getSex() === 'F') ? "Female" : "Male" ?></td>
+            </tr>
+            <tr>
+                <th>Fixed:</th>
+                <td><?php echo ($animal->isFixed()) ? "Yes" : "No" ?></td>
+            </tr>
+            <tr>
+                <th>Age:</th>
+                <td><?php echo $animal->getAge() ?></td>
             </tr>
         </table>
         <p>

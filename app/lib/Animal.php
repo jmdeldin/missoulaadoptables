@@ -108,10 +108,10 @@ class Animal
         $this->sex = $sex;
     }
 
-    public function getFixed()
+    public function isFixed()
     {
         return $this->fixed;
-        }
+    }
 
     public function setFixed($fixed)
     {
@@ -147,5 +147,15 @@ class Animal
     {
         $this->shelter = $shelter;
     }
-}
 
+    public function getAge()
+    {
+        return $this->age;
+    }
+
+    public function setAge($age)
+    {
+        $this->age = $age;
+    }
+
+}
