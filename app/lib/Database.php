@@ -17,7 +17,13 @@ class Database
     {
         $dsn = "{$config['driver']}:host={$config['host']};
                 dbname={$config['dbname']}";
-        $this->dbh = new PDO($dsn, $config['user'], $config['pass']);
+        try {
+            $this->dbh = new PDO($dsn, $config['user'], $config['pass']);
+        } catch (PDOException $e) {
+            echo "Database unavailable.";
+            // TODO: Log $e->getMessage()
+            exit(1);
+        }
     }
 
     /**
