@@ -5,7 +5,6 @@ TODO
 Frontend
 --------
 
-- Images in Atom feed (animal/feed)
 - Explanation for the "updates" page
 - Spam protection for email addresses
 - Hide errors (e.g., "Controller not found") for production

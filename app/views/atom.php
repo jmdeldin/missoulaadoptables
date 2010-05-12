@@ -21,10 +21,16 @@ echo '<?xml version="1.0" encoding="utf-8"?>'
             <id><?php echo $url ?></id>
             <updated><?php echo $animal->getDateRecorded() ?></updated>
             <title>[<?php echo $animal->getCommonName() ?>] <?php echo $animal->getName() ?></title>
-            <content>
-                <!--TODO: add the animal's image -->
+            <content type="html">
                 <![CDATA[
-                    <?php echo $animal->getDescription() ?>
+                    <p>
+                        <img alt="Photo of <?php echo $animal->getName() ?>"
+                             src="<?php echo ($animal->hasImage()) ? $animal->getImage()
+                                                                   : Url::getBase() . "/img/no-photo.png" ?>"/>
+                    </p>
+                    <p>
+                        <?php echo $animal->getDescription() ?>
+                    </p>
                 ]]>
             </content>
         </entry>

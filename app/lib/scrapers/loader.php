@@ -217,8 +217,10 @@ class Loader
   {
     $url = "http://montanapets.org/mhs/pictures/{$impoundNum}.jpg";
     $jpg = file_get_contents($url);
-    file_put_contents(Site::getInstance()->getUploadPath() . "/{$id}.jpg",
-                     $jpg);
+    if ($jpg) {
+        file_put_contents(Site::getInstance()->getUploadPath() . "/{$id}.jpg",
+                          $jpg);
+    }
   }
 
   // Recursive loading function.
