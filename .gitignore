@@ -3,4 +3,5 @@ conf.ini
 Thumbs.db
 *.swp
 pub/img/upload
+logs
 

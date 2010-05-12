@@ -29,18 +29,16 @@ class CronController {
     public function scrape()
     {
         // TODO: This should be read from the ``shelter_pages'' table
-        $sites = array(
-            "mhs-dog" => array("id"   => 2,
-                               "abbr" => "mhs",
-                               "url"  => "http://montanapets.org/mhs/residentdog.html"),
-        );
+        $mhsDog = new MhsDogScraper("http://montanapets.org/mhs/residentdog.html");
+        $mhsCat = new MhsCatScraper("http://montanapets.org/mhs/residentcat.html");
 
-        foreach ($sites as $s) {
-            $scraper = new Scraper($s["url"]);
-            $loader = new Loader($scraper->scrape(), $s["abbr"], $s["id"]);
-            $loader->checkActive();
-            $loader->load();
-        }
+        $packer = new Packer();
+        $packer->pack($mhsDog->scrape());
+        $packer->pack($mhsCat->scrape());
+
+        $loader = new Loader($packer->getPackedPets());
+        $loader->checkActive();
+        $loader->load();
 
         // temporary fix for the slashes in some breeds
         // @todo: this should be done in the scraper

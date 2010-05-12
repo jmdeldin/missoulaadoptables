@@ -9,7 +9,8 @@ pretty_urls = true
 num_animals = 20 ; # of animals to display on the homepage
 
 [paths]
-upload_oath = pub/img/upload ; relative to the root
+upload_path = pub/img/upload ; relative to the root
+log_file    = /var/logs/.../scrapers.log ; absolute path
 
 [database]
 driver = mysql

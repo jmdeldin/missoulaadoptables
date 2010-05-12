@@ -65,6 +65,12 @@ class Site
     private $uploadPath;
 
     /**
+     * Path to the log file.
+     * @var string
+     */
+    private $logFile;
+
+    /**
      * Directories containing classes.
      * @var array
      */
@@ -120,6 +126,9 @@ class Site
             if (!file_exists($this->uploadPath)) {
                 echo "{$this->uploadPath} does not exist.";
             }
+
+            // log file
+            $this->logFile = $conf["paths"]["log_file"];
 
             // production status -- parse_ini_file sets "false" as ""
             $this->production = ($conf["site"]["production"]) ? true : false;
@@ -215,5 +224,10 @@ class Site
     public function getRoot()
     {
         return $this->root;
+    }
+
+    public function getLogFile()
+    {
+        return $this->logFile;
     }
 }

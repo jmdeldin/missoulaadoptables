@@ -44,7 +44,17 @@ values("Missoula Animal Control",
        59808,
        "4065417387",
        "rocke@bigsky.net",
-       "10-5:30 PM Monday through Friday; 12-4 PM Saturday");
+       "10-5:30 PM Monday through Friday; 12-4 PM Saturday"),
+      ("Humane Society of Western Montana",
+       "http://www.myhswm.org/",
+       "5930 Hwy 93 South",
+       "Missoula",
+       (select id from states where abbr = "MT"),
+       59804,
+       "4065493934",
+       "adoptions@myhswm.org",
+       "1-6 PM Tuesday–Friday; 11-4 pm Saturday");
+
 
 /*
  * Scrapeable pages
