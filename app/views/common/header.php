@@ -21,7 +21,7 @@ header('content-type: text/html; charset=utf-8');
 
             <ul id="nav">
                 <li><a href="<?php echo Url::getBase() ?>">Home</a></li>
-                <li><a href="<?php echo Url::route2url("animal/browse") ?>">Browse</a></li>
+                <li><a href="<?php echo Url::route2url("browse") ?>">Browse</a></li>
                 <li><a href="<?php echo Url::route2url("animal/feed") ?>">Updates</a></li>
                 <li id="search">
                     <form action="<?php echo Url::route2url("animal/search") ?>"
@@ -52,6 +52,9 @@ header('content-type: text/html; charset=utf-8');
                             shelters and rescue groups.
                         </p>
                     </div>
+                <?php endif ?>
+                <?php if (isset($showBrowser)): ?>
+                    <?php include dirname(dirname(__FILE__)) . "/fragments/browser.php" ?>
                 <?php endif ?>
             </div><!--//mission_inner-->
         </div><!--//mission-->

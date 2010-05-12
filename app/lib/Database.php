@@ -58,12 +58,12 @@ class Database
     }
 
     /**
-     * Insert into the database.
+     * Executes a non-returning query.
      *
      * @param string $query SQL query to execute.
      * @param array  $vals  Key-value pair for the prepared statement.
      */
-    public function insert($query, $vals)
+    public function execute($query, $vals = NULL)
     {
         $this->executePreparedStatement($query, $vals);
     }

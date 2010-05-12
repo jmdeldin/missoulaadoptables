@@ -185,6 +185,44 @@ table {
         #animal_view_shelter address {
             font-style: normal;
         }
+
+/* browse view */
+#category_container {
+    color: #fff;
+    margin: 0 0 24px;
+    overflow: hidden;
+}
+.category {
+    background: #25292a;
+    float: left;
+    margin: 0 0 0 20px;
+    overflow: auto;
+    width: 225px;
+}
+    #category_container > .first {
+        margin-left: 0;
+    }
+    .category h3 {
+        background: #ddd;
+        color: #2f3536;
+        font-size: 12px;
+        padding: 3px 10px 2px;
+        text-transform: uppercase;
+    }
+    .category ul {
+        font-size: 12px;
+        height: 200px;
+        list-style: none;
+        overflow: auto;
+        padding: 10px;
+    }
+    .category a {
+        color: #f0c95f;
+        display: block;
+        padding: 2px 0;
+    }
+
+
 /* footer */
 #footer {
     font-size: 12px;

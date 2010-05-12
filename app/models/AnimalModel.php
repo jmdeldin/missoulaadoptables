@@ -123,4 +123,10 @@ EOF;
         }
         return $animals;
     }
+
+    public function getByCategory($category, $value)
+    {
+        $rs = $this->get(array("{$category} = ?", $value), "scrape_date desc");
+        return $rs;
+    }
 }

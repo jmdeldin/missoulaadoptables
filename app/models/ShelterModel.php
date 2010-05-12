@@ -14,19 +14,31 @@ class ShelterModel
         $this->db = new Database(Site::getInstance()->getDbConf());
     }
 
-    public function getById($id)
+    private function get($criteria = NULL, $sort = NULL, $limit = NULL)
     {
         $query = <<<EOF
 select shelters.*, states.name as state
 from shelters
     inner join states on shelters.state_id = states.id
-where shelters.id = ?
 EOF;
+        if (isset($criteria)) {
+            // where column = ?
+            $query .= " where " . $criteria[0];
+            // reset criteria to just the input value
+            $criteria = array($criteria[1]);
+        }
+        if (isset($sort)) {
+            $query .= " order by $sort";
+        }
+        if (isset($limit)) {
+            $query .= " limit $limit";
+        }
 
-        $rs = $this->db->retrieve($query, array($id));
-        if (!$rs)
-            return null;
+        $rs = $this->db->retrieve($query, $criteria);
         $shelters = array();
+        if (!$rs) {
+            return $shelters;
+        }
         foreach ($rs as $row) {
             extract($row);
             // TODO: Consider using the builder pattern
@@ -34,6 +46,24 @@ EOF;
                                       $postal_code, $phone, $email, $hours,
                                       $state);
         }
-        return $shelters[0];
+        return $shelters;
+    }
+
+    public function getById($id)
+    {
+        $rs = $this->get(array("shelters.id = ?", $id));
+        if (!$rs) {
+            return null;
+        }
+        return $rs[0];
+    }
+
+    public function getAll()
+    {
+        $rs = $this->get(null, "shelters.name asc");
+        if (!$rs) {
+            return null;
+        }
+        return $rs;
     }
 }

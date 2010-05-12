@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Actions that are run
+ * Actions that are run by cron or from the command line
  */
 class CronController {
     /**
@@ -28,13 +28,23 @@ class CronController {
      */
     public function scrape()
     {
-        $url = "http://montanapets.org/mhs/residentdog.html";
-        // DOMDocument complains about malformed HTML
-        // TODO: See if there's a better library for parsing HTML
-        error_reporting(E_ERROR);
-        $scraper = new Scraper($url);
-        $loader = new Loader($scraper->scrape());
-        $loader->checkActive();
-        $loader->load();
+        // TODO: This should be read from the ``shelter_pages'' table
+        $sites = array(
+            "mhs-dog" => array("id"   => 2,
+                               "abbr" => "mhs",
+                               "url"  => "http://montanapets.org/mhs/residentdog.html"),
+        );
+
+        foreach ($sites as $s) {
+            $scraper = new Scraper($s["url"]);
+            $loader = new Loader($scraper->scrape(), $s["abbr"], $s["id"]);
+            $loader->checkActive();
+            $loader->load();
+        }
+
+        // temporary fix for the slashes in some breeds
+        // @todo: this should be done in the scraper
+        $db = new Database(Site::getInstance()->getDbConf());
+        $db->execute("update animals set breed = replace(breed, '/', '-')");
     }
 }
