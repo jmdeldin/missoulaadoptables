@@ -109,9 +109,10 @@ EOF;
 select id
 from search_index
 where common_name like ?
-    or breed like ?
-    or description like ?
-    or name like ?
+    or  breed like ?
+    or  description like ?
+    or  name like ?
+    and active = true
 EOF;
         $animals = array();
         $rs = $this->db->retrieve($sql, array($query, $query, $query, $query));

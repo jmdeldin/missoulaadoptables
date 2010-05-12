@@ -117,5 +117,6 @@ as
     select animals.*, common_names.name as common_name
     from animals
         inner join common_names on
-            animals.common_name_id = common_names.id;
+            animals.common_name_id = common_names.id
+    where animals.active = true;
 
